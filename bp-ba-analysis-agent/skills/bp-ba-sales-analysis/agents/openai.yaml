@@ -1,0 +1,7 @@
+interface:
+  display_name: "BP BA Sales Analysis"
+  short_description: "Map BP BA sales analysis topics to fields."
+  default_prompt: "Use $bp-ba-sales-analysis to choose the right sales funnel analysis topic, required fields, metrics, and validation notes."
+
+policy:
+  allow_implicit_invocation: true
