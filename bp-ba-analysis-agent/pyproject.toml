@@ -1,0 +1,9 @@
+[project]
+name = "bp-ba-agent"
+version = "0.1.0"
+description = "POC workflow agent for BI project BP BA analysis work."
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
