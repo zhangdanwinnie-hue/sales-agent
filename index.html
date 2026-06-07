@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sales BP Analysis Agent Thread Prototype</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="thread-app">
+      <aside class="thread-sidebar">
+        <div class="brand">
+          <div class="brand-mark">BP</div>
+          <div>
+            <h1>Sales BP Agent</h1>
+            <p>Analysis Threads</p>
+          </div>
+        </div>
+
+        <button class="new-thread-button" id="newThreadButton">
+          <span data-icon="plus"></span>
+          <span>New Analysis</span>
+        </button>
+
+        <label class="search-box">
+          <span data-icon="search"></span>
+          <input id="threadSearch" type="search" placeholder="Search analysis threads" />
+        </label>
+
+        <div class="thread-list" id="threadList"></div>
+      </aside>
+
+      <main class="thread-main">
+        <header class="thread-header">
+          <div>
+            <p class="eyebrow">BA Analysis Agent</p>
+            <h2 id="threadTitle">Analysis Thread</h2>
+          </div>
+          <div class="header-actions">
+            <button class="secondary-button" id="openContextButton">
+              <span data-icon="panel-right-open"></span>
+              <span>Context</span>
+            </button>
+            <button class="primary-button" id="exportReportButton">
+              <span data-icon="download"></span>
+              <span>Export HTML</span>
+            </button>
+          </div>
+        </header>
+
+        <section class="thread-stream" id="threadStream" aria-live="polite"></section>
+
+        <footer class="composer">
+          <div class="composer-tools">
+            <button class="tool-button" id="uploadCsvButton">
+              <span data-icon="paperclip"></span>
+              <span>CSV</span>
+            </button>
+            <select id="dataSourceSelect" class="source-select">
+              <option>Sales 宽表 Demo</option>
+              <option>企业语义模型</option>
+              <option>上传 CSV</option>
+            </select>
+          </div>
+          <textarea id="composerInput" rows="2" placeholder="输入业务问题或追加要求，例如：近期客流下降明显，想分析是哪些渠道在下降..."></textarea>
+          <button class="send-button" id="sendButton" title="Send">
+            <span data-icon="send"></span>
+          </button>
+        </footer>
+      </main>
+
+      <aside class="context-drawer" id="contextDrawer" aria-label="Context drawer">
+        <div class="drawer-header">
+          <div>
+            <p class="eyebrow" id="drawerEyebrow">Context</p>
+            <h3 id="drawerTitle">Artifact Detail</h3>
+          </div>
+          <button class="icon-button" id="closeDrawerButton" title="Close context">
+            <span data-icon="x"></span>
+          </button>
+        </div>
+        <div class="drawer-body" id="drawerBody"></div>
+      </aside>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
