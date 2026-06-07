@@ -1,0 +1,28 @@
+{
+  "output": "C:\\Users\\wangj\\Documents\\BP BA分析\\docs\\sales_bp_agent_mvp_4_week_timeline.pptx",
+  "outputBytes": 17975,
+  "slideCount": 1,
+  "slideSize": {
+    "width": 1280,
+    "height": 720
+  },
+  "previewDir": "C:\\Users\\wangj\\Documents\\BP BA分析\\outputs\\manual-20260522-mvp-timeline-ppt\\presentations\\mvp-timeline\\preview",
+  "previewPaths": [
+    "C:\\Users\\wangj\\Documents\\BP BA分析\\outputs\\manual-20260522-mvp-timeline-ppt\\presentations\\mvp-timeline\\preview\\slide-01.png"
+  ],
+  "layoutDir": "C:\\Users\\wangj\\Documents\\BP BA分析\\outputs\\manual-20260522-mvp-timeline-ppt\\presentations\\mvp-timeline\\layout",
+  "layoutResults": [
+    {
+      "layoutPath": "C:\\Users\\wangj\\Documents\\BP BA分析\\outputs\\manual-20260522-mvp-timeline-ppt\\presentations\\mvp-timeline\\layout\\slide-01.layout.json"
+    }
+  ],
+  "contactSheet": "C:\\Users\\wangj\\Documents\\BP BA分析\\outputs\\manual-20260522-mvp-timeline-ppt\\presentations\\mvp-timeline\\preview\\contact-sheet.png",
+  "slides": [
+    {
+      "index": 1,
+      "requestedSlideNumber": 1,
+      "modulePath": "C:\\Users\\wangj\\Documents\\BP BA分析\\outputs\\manual-20260522-mvp-timeline-ppt\\presentations\\mvp-timeline\\slides\\slide-01.mjs",
+      "exportName": "slide01"
+    }
+  ]
+}

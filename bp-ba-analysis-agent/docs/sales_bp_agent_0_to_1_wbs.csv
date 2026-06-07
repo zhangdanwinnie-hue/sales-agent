@@ -1,0 +1,29 @@
+phase,workstream,start_date,end_date,owner,deliverable,acceptance_criteria,priority
+MVP W1,Product & Scope,2026-05-25,2026-05-29,BA/Product,MVP PRD and acceptance checklist,"3 scenarios, 4 pages, 3 agents, CSV data boundary confirmed",P0
+MVP W1,Data Scope,2026-05-25,2026-05-29,BA/Product,CSV field dictionary and metric boundary,"Available fields, available metrics, missing data and unsupported scope documented",P0
+MVP W2-W3,Task Management,2026-06-01,2026-06-12,Developer,Task list and task lifecycle,"Create, save, open, duplicate, delete and filter tasks work after restart",P0
+MVP W2-W3,Task Creation,2026-06-01,2026-06-12,Developer,Create analysis task page,"Draft does not trigger agent; BA confirmation starts analysis design agent",P0
+MVP W2-W3,Persistence,2026-06-01,2026-06-12,Developer,Local JSON task persistence,"Inputs, current node, confirmations and manual edits restore after service restart",P0
+MVP W4-W5,Analysis Design Agent,2026-06-15,2026-06-26,Developer,AI-like analysis thinking page,"Different business questions produce visibly different thinking, paths and hypotheses",P0
+MVP W4-W5,Hypothesis Management,2026-06-15,2026-06-26,Developer,Editable dynamic hypotheses,"BA can add, edit, delete and change status; downstream validation uses saved hypotheses",P0
+MVP W4-W5,Capability Catalog,2026-06-15,2026-06-26,Developer,Maintainable capability catalog,"Question types, methods, Playbooks and metric templates can be maintained locally",P1
+MVP W4-W5,Ontology Maintenance,2026-06-15,2026-06-26,Developer,Maintainable ontology page,"Objects, events, relationships and metric definitions can be maintained locally",P1
+MVP W6-W7,CSV Data Capability,2026-06-29,2026-07-10,Developer,CSV profiling and field mapping,"Sales wide CSV can be profiled; field availability and missing fields are visible",P0
+MVP W6-W7,Data Insight Page,2026-06-29,2026-07-10,Developer,Four-tab data analysis page,"Overview, dimension table, hypothesis validation and SQL tabs work",P0
+MVP W6-W7,Risk Detection,2026-06-29,2026-07-10,Developer,Metric-supported risk points,"Risk points are backed by metric values and period comparisons",P0
+MVP W6-W7,SQL Audit,2026-06-29,2026-07-10,Developer,Auditable SQL logic,"SQL tab is copyable and not the default data insight view",P1
+MVP W8,Report Generation,2026-07-13,2026-07-17,Developer,Editable report generation page,"Report sections can be edited, saved and restored",P0
+MVP W8,HTML Export,2026-07-13,2026-07-17,Developer,Real HTML report export,"HTML report exports successfully and can be opened from generated link",P0
+MVP W9,Pilot Validation,2026-07-20,2026-07-24,BA/Product,3 pilot cases and feedback log,"Traffic decline, order decline and channel/dealer case run through full workflow",P0
+MVP W9,UX Fixes,2026-07-20,2026-07-24,Developer,Critical pilot fixes,"Blocking usability and correctness issues found in pilot are resolved or documented",P0
+MVP W10,Release Packaging,2026-07-27,2026-07-31,BA/Product,MVP release package,"User guide, demo data, known limitations and next-stage backlog are ready",P0
+Production P1,MVP Foundation,2026-05-25,2026-07-31,BA+Developer,MVP pilot baseline,"MVP accepted and ready to become production foundation",P0
+Production P2,Engineering Architecture,2026-08-03,2026-08-28,Developer+IT,Modular service architecture,"Frontend/backend separation, service modules, database persistence and env config designed",P0
+Production P2,Observability Basics,2026-08-03,2026-08-28,Developer+IT,Logging and error handling,"Task status, service errors and agent failures are traceable",P0
+Production P3,Data Integration,2026-08-31,2026-09-25,Developer+Data Team,Production CSV and data connector foundation,"Upload validation, field mapping, preview and data quality checks are available",P0
+Production P3,Semantic Layer Productionization,2026-08-31,2026-09-25,Developer+Data Team,Production semantic maintenance,"Business objects, events, metrics and physical field mappings are maintainable",P0
+Production P4,Agent Enhancement,2026-09-28,2026-10-23,Developer,Enhanced agent capabilities,"Agents support stronger classification, multi-data analysis, evidence chains and audience-aware reports",P0
+Production P4,Knowledge Reuse,2026-09-28,2026-10-23,BA+Developer,Playbook reuse mechanism,"Completed analyses can be converted into reusable Playbooks",P1
+Production P5,Permission and Audit,2026-10-26,2026-11-20,IT+Security+Developer,Role permission and audit trail,"User roles, operation audit and agent output audit are available",P0
+Production P5,Collaboration and Monitoring,2026-10-26,2026-11-20,IT+Developer,Collaboration and monitoring,"Comments, modification history and service monitoring are available",P1
+Production P6,UAT and Launch,2026-11-23,2026-11-30,BA+IT+Developer,Production trial launch,"UAT, security check, training, launch guide and rollback plan are completed",P0
