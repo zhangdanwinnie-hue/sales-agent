@@ -1,0 +1,763 @@
+{
+  "version": "0.1",
+  "question_types": [
+    {
+      "id": "performance_diagnosis",
+      "name": "业绩表现诊断",
+      "sample_questions": [
+        "为什么某区域订单下降",
+        "本月交车缺口来自哪里",
+        "某车系销量为什么低于预期"
+      ],
+      "recommended_methods": [
+        "trend",
+        "contribution",
+        "structure",
+        "funnel",
+        "dealer_segmentation",
+        "reason_analysis"
+      ],
+      "required_confirmations": [
+        "time_window",
+        "comparison_baseline",
+        "business_scope",
+        "target_metric"
+      ],
+      "recommended_skills": [
+        "data-analysis",
+        "exploratory-data-analysis",
+        "sql-query-generation",
+        "analytics-reporting"
+      ]
+    },
+    {
+      "id": "conversion_efficiency",
+      "name": "转化效率诊断",
+      "sample_questions": [
+        "为什么线索到订单转化变差",
+        "到店率下降的原因是什么",
+        "试驾后为什么没有形成订单"
+      ],
+      "recommended_methods": [
+        "funnel",
+        "stage_latency",
+        "cohort",
+        "channel_quality",
+        "dealer_segmentation",
+        "battle_fail_analysis"
+      ],
+      "required_confirmations": [
+        "funnel_stage_definition",
+        "valid_event_filter",
+        "distinct_count_key",
+        "comparison_baseline"
+      ],
+      "recommended_skills": [
+        "exploratory-data-analysis",
+        "sql-query-generation",
+        "churn-analysis",
+        "data-visualization"
+      ]
+    },
+    {
+      "id": "channel_campaign_evaluation",
+      "name": "渠道与活动效果评估",
+      "sample_questions": [
+        "哪个渠道线索质量更好",
+        "A 活动和 B 活动效果差异在哪里",
+        "投放渠道是否带来了有效订单"
+      ],
+      "recommended_methods": [
+        "channel_structure",
+        "campaign_comparison",
+        "funnel",
+        "lead_quality",
+        "cost_efficiency_if_available"
+      ],
+      "required_confirmations": [
+        "campaign_scope",
+        "channel_hierarchy",
+        "attribution_window",
+        "cost_data_available"
+      ],
+      "recommended_skills": [
+        "analytics-reporting",
+        "competitive-battlecard-creation",
+        "data-analysis",
+        "data-visualization"
+      ]
+    },
+    {
+      "id": "opportunity_identification",
+      "name": "增长机会识别",
+      "sample_questions": [
+        "哪些经销商有提升空间",
+        "哪些区域值得追加资源",
+        "哪个车系还有增长潜力"
+      ],
+      "recommended_methods": [
+        "ranking",
+        "benchmarking",
+        "potential_scoring",
+        "segment_comparison",
+        "constraint_check"
+      ],
+      "required_confirmations": [
+        "opportunity_object",
+        "benchmark_group",
+        "resource_constraint",
+        "success_metric"
+      ],
+      "recommended_skills": [
+        "data-analysis",
+        "financial-modeling",
+        "analytics-reporting",
+        "proposal-generation"
+      ]
+    },
+    {
+      "id": "forecast_warning",
+      "name": "预测预警",
+      "sample_questions": [
+        "月底能否完成订单目标",
+        "哪些经销商有掉队风险",
+        "本周是否会低于计划"
+      ],
+      "recommended_methods": [
+        "target_gap",
+        "run_rate",
+        "forecast",
+        "risk_scoring",
+        "driver_check"
+      ],
+      "required_confirmations": [
+        "target_data",
+        "forecast_horizon",
+        "calendar_adjustment",
+        "risk_threshold"
+      ],
+      "recommended_skills": [
+        "financial-modeling",
+        "data-analysis",
+        "analytics-reporting",
+        "fact-checking"
+      ]
+    },
+    {
+      "id": "operation_monitoring",
+      "name": "运营监控",
+      "sample_questions": [
+        "哪些门店跟进异常",
+        "是否有异常战败",
+        "线索处理 SLA 是否正常"
+      ],
+      "recommended_methods": [
+        "anomaly_detection",
+        "sla_check",
+        "detail_drilldown",
+        "exception_list",
+        "owner_assignment"
+      ],
+      "required_confirmations": [
+        "monitoring_frequency",
+        "threshold",
+        "owner_dimension",
+        "alert_action"
+      ],
+      "recommended_skills": [
+        "data-cleaning",
+        "exploratory-data-analysis",
+        "data-analysis",
+        "analytics-reporting"
+      ]
+    }
+  ],
+  "analysis_methods": [
+    {
+      "id": "trend",
+      "name": "趋势分析",
+      "description": "Analyze daily, weekly or monthly movement and compare with baseline.",
+      "inputs": [
+        "metric",
+        "time_field",
+        "time_grain",
+        "comparison_baseline"
+      ],
+      "outputs": [
+        "trend_table",
+        "trend_chart",
+        "inflection_points"
+      ],
+      "recommended_skills": [
+        "data-analysis",
+        "data-visualization"
+      ]
+    },
+    {
+      "id": "funnel",
+      "name": "漏斗分析",
+      "description": "Analyze stage volume and conversion across register, lead, opportunity, visit, test drive, order and handover.",
+      "inputs": [
+        "stage_definitions",
+        "distinct_keys",
+        "valid_filters",
+        "dimensions"
+      ],
+      "outputs": [
+        "stage_counts",
+        "conversion_rates",
+        "stage_dropoff"
+      ],
+      "recommended_skills": [
+        "exploratory-data-analysis",
+        "sql-query-generation",
+        "data-visualization"
+      ]
+    },
+    {
+      "id": "contribution",
+      "name": "贡献度分析",
+      "description": "Break growth or decline into dimension-level contribution.",
+      "inputs": [
+        "metric",
+        "dimension",
+        "current_period",
+        "baseline_period"
+      ],
+      "outputs": [
+        "contribution_rank",
+        "positive_negative_drivers",
+        "waterfall_data"
+      ],
+      "recommended_skills": [
+        "data-analysis",
+        "sql-query-generation",
+        "analytics-reporting"
+      ]
+    },
+    {
+      "id": "structure",
+      "name": "结构分析",
+      "description": "Compare mix shift by region, channel, dealer, series, campaign or customer segment.",
+      "inputs": [
+        "metric",
+        "dimension",
+        "period"
+      ],
+      "outputs": [
+        "mix_table",
+        "share_change",
+        "segment_summary"
+      ],
+      "recommended_skills": [
+        "data-analysis",
+        "data-visualization"
+      ]
+    },
+    {
+      "id": "stage_latency",
+      "name": "时效分析",
+      "description": "Measure delay between sales funnel stages and follow-up SLA.",
+      "inputs": [
+        "start_time",
+        "end_time",
+        "latency_metric",
+        "dimension"
+      ],
+      "outputs": [
+        "latency_distribution",
+        "sla_breach_list",
+        "latency_driver"
+      ],
+      "recommended_skills": [
+        "sql-query-generation",
+        "exploratory-data-analysis"
+      ]
+    },
+    {
+      "id": "cohort",
+      "name": "Cohort 分析",
+      "description": "Track downstream conversion for cohorts entering at different times or channels.",
+      "inputs": [
+        "cohort_field",
+        "entry_time",
+        "conversion_events",
+        "maturity_window"
+      ],
+      "outputs": [
+        "cohort_matrix",
+        "matured_conversion",
+        "cohort_comparison"
+      ],
+      "recommended_skills": [
+        "exploratory-data-analysis",
+        "data-visualization"
+      ]
+    },
+    {
+      "id": "anomaly_detection",
+      "name": "异常检测",
+      "description": "Detect sudden change, outlier or missing activity.",
+      "inputs": [
+        "metric",
+        "time_field",
+        "dimension",
+        "threshold"
+      ],
+      "outputs": [
+        "anomaly_list",
+        "severity",
+        "possible_causes"
+      ],
+      "recommended_skills": [
+        "data-cleaning",
+        "exploratory-data-analysis"
+      ]
+    },
+    {
+      "id": "reason_analysis",
+      "name": "原因枚举分析",
+      "description": "Analyze battle fail, refusal and cancellation reasons.",
+      "inputs": [
+        "reason_field",
+        "metric",
+        "dimension"
+      ],
+      "outputs": [
+        "reason_rank",
+        "reason_share",
+        "reason_change"
+      ],
+      "recommended_skills": [
+        "churn-analysis",
+        "competitive-battlecard-creation",
+        "analytics-reporting"
+      ]
+    },
+    {
+      "id": "target_gap",
+      "name": "目标差距分析",
+      "description": "Compare actual performance with target and calculate gap.",
+      "inputs": [
+        "actual_metric",
+        "target_metric",
+        "period",
+        "dimension"
+      ],
+      "outputs": [
+        "gap_table",
+        "gap_contribution",
+        "risk_list"
+      ],
+      "recommended_skills": [
+        "financial-modeling",
+        "analytics-reporting"
+      ]
+    },
+    {
+      "id": "potential_scoring",
+      "name": "潜力评分",
+      "description": "Score objects by historical performance, conversion, capacity proxy and growth headroom.",
+      "inputs": [
+        "object",
+        "candidate_metrics",
+        "benchmark_group",
+        "weights"
+      ],
+      "outputs": [
+        "score_table",
+        "priority_list",
+        "recommended_actions"
+      ],
+      "recommended_skills": [
+        "financial-modeling",
+        "proposal-generation",
+        "analytics-reporting"
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "id": "lead_count",
+      "name": "线索量",
+      "definition": "Distinct leads in selected period.",
+      "formula": "count_distinct(leads_id)",
+      "required_fields": [
+        "leads_id",
+        "leads_create_time"
+      ],
+      "default_filters": [
+        "leads_id is not null"
+      ],
+      "ba_confirmation_required": true
+    },
+    {
+      "id": "opportunity_count",
+      "name": "机会量",
+      "definition": "Distinct sales opportunities in selected period.",
+      "formula": "count_distinct(oppty_id)",
+      "required_fields": [
+        "oppty_id",
+        "oppty_create_time"
+      ],
+      "default_filters": [
+        "oppty_id is not null",
+        "oppty_deleted_desc != 'deleted' when confirmed"
+      ],
+      "ba_confirmation_required": true
+    },
+    {
+      "id": "valid_visit_count",
+      "name": "有效到店量",
+      "definition": "Distinct valid showroom visits.",
+      "formula": "count_distinct(visit_id)",
+      "required_fields": [
+        "visit_id",
+        "visit_arrival_time",
+        "visit_valid_flag"
+      ],
+      "default_filters": [
+        "visit_id is not null",
+        "visit_valid_flag indicates valid"
+      ],
+      "ba_confirmation_required": true
+    },
+    {
+      "id": "test_drive_count",
+      "name": "试驾量",
+      "definition": "Distinct non-deleted test drives.",
+      "formula": "count_distinct(td_id)",
+      "required_fields": [
+        "td_id",
+        "td_start_time",
+        "td_deleted_desc"
+      ],
+      "default_filters": [
+        "td_id is not null"
+      ],
+      "ba_confirmation_required": true
+    },
+    {
+      "id": "order_count",
+      "name": "订单量",
+      "definition": "Distinct vehicle orders.",
+      "formula": "count_distinct(order_id)",
+      "required_fields": [
+        "order_id",
+        "order_create_time",
+        "order_deleted_desc",
+        "order_cancel_flag"
+      ],
+      "default_filters": [
+        "order_id is not null"
+      ],
+      "ba_confirmation_required": true
+    },
+    {
+      "id": "handover_count",
+      "name": "交车量",
+      "definition": "Orders with handover time or handover intake flag.",
+      "formula": "count_distinct(order_id where order_handover_time is not null or order_handover_intake_flag indicates yes)",
+      "required_fields": [
+        "order_id",
+        "order_handover_time",
+        "order_handover_intake_flag"
+      ],
+      "default_filters": [
+        "order_id is not null"
+      ],
+      "ba_confirmation_required": true
+    },
+    {
+      "id": "first_follow_latency",
+      "name": "首次跟进时效",
+      "definition": "Minutes from lead or opportunity creation to first follow-up.",
+      "formula": "avg(leads_first_follow_mindiff) or avg(oppty_first_oppty_follow_mindiff)",
+      "required_fields": [
+        "leads_first_follow_mindiff",
+        "oppty_first_oppty_follow_mindiff"
+      ],
+      "default_filters": [
+        "latency >= 0"
+      ],
+      "ba_confirmation_required": true
+    },
+    {
+      "id": "order_cancel_rate",
+      "name": "订单取消率",
+      "definition": "Cancelled orders divided by total orders.",
+      "formula": "count_distinct(order_id where order_cancel_flag indicates yes) / count_distinct(order_id)",
+      "required_fields": [
+        "order_id",
+        "order_cancel_flag"
+      ],
+      "default_filters": [
+        "order_id is not null"
+      ],
+      "ba_confirmation_required": true
+    }
+  ],
+  "approval_gates": [
+    {
+      "id": "problem_confirmation",
+      "name": "问题确认",
+      "required_items": [
+        "standardized_question",
+        "scope",
+        "time_window",
+        "baseline",
+        "audience"
+      ],
+      "recommended_skills": [
+        "deep-research",
+        "context-retrieval"
+      ]
+    },
+    {
+      "id": "plan_confirmation",
+      "name": "方案确认",
+      "required_items": [
+        "question_type",
+        "hypothesis_tree",
+        "analysis_methods",
+        "dimensions"
+      ],
+      "recommended_skills": [
+        "context-retrieval",
+        "fact-checking"
+      ]
+    },
+    {
+      "id": "data_confirmation",
+      "name": "数据确认",
+      "required_items": [
+        "source_tables",
+        "field_mapping",
+        "grain",
+        "data_gaps",
+        "privacy"
+      ],
+      "recommended_skills": [
+        "data-cleaning",
+        "sql-query-generation"
+      ]
+    },
+    {
+      "id": "metric_confirmation",
+      "name": "口径确认",
+      "required_items": [
+        "metric_definitions",
+        "filters",
+        "dedupe_keys",
+        "comparison_logic"
+      ],
+      "recommended_skills": [
+        "sql-query-generation",
+        "fact-checking"
+      ]
+    },
+    {
+      "id": "insight_confirmation",
+      "name": "洞察确认",
+      "required_items": [
+        "facts",
+        "inferences",
+        "recommendations",
+        "confidence",
+        "limitations"
+      ],
+      "recommended_skills": [
+        "analytics-reporting",
+        "fact-checking"
+      ]
+    },
+    {
+      "id": "report_confirmation",
+      "name": "报告确认",
+      "required_items": [
+        "storyline",
+        "charts",
+        "action_list",
+        "appendix"
+      ],
+      "recommended_skills": [
+        "report-generation",
+        "presentation-creation",
+        "proofreading"
+      ]
+    }
+  ],
+  "skill_registry": [
+    {
+      "id": "deep-research",
+      "category": "research",
+      "purpose": "Collect and synthesize market, competitor, policy, and external context before building an analysis plan.",
+      "used_by_agents": [
+        "analysis_strategy"
+      ]
+    },
+    {
+      "id": "context-retrieval",
+      "category": "context_engineering",
+      "purpose": "Retrieve reusable business rules, historical cases, metric definitions, and playbook fragments.",
+      "used_by_agents": [
+        "analysis_strategy",
+        "business_insight"
+      ]
+    },
+    {
+      "id": "fact-checking",
+      "category": "quality",
+      "purpose": "Check claims, cited evidence, assumptions, and conclusion support before BA review.",
+      "used_by_agents": [
+        "analysis_strategy",
+        "business_insight",
+        "report_generation"
+      ]
+    },
+    {
+      "id": "data-cleaning",
+      "category": "data",
+      "purpose": "Profile raw CSV or table extracts, detect missingness, invalid values, duplicates, and format issues.",
+      "used_by_agents": [
+        "data_analysis"
+      ]
+    },
+    {
+      "id": "data-analysis",
+      "category": "data",
+      "purpose": "Run general descriptive, comparative, and diagnostic analysis on business datasets.",
+      "used_by_agents": [
+        "data_analysis"
+      ]
+    },
+    {
+      "id": "exploratory-data-analysis",
+      "category": "data",
+      "purpose": "Explore distributions, segments, correlations, anomalies, and candidate drivers before formal analysis.",
+      "used_by_agents": [
+        "data_analysis"
+      ]
+    },
+    {
+      "id": "sql-query-generation",
+      "category": "data",
+      "purpose": "Generate and explain SQL for metric calculation, joins, validation queries, and drilldowns.",
+      "used_by_agents": [
+        "data_analysis"
+      ]
+    },
+    {
+      "id": "data-visualization",
+      "category": "data",
+      "purpose": "Select chart types and prepare chart-ready structures for dashboard or report output.",
+      "used_by_agents": [
+        "data_analysis",
+        "report_generation"
+      ]
+    },
+    {
+      "id": "analytics-reporting",
+      "category": "business_analysis",
+      "purpose": "Convert analysis results into KPI narratives, business review summaries, and management-ready findings.",
+      "used_by_agents": [
+        "business_insight",
+        "report_generation"
+      ]
+    },
+    {
+      "id": "churn-analysis",
+      "category": "business_analysis",
+      "purpose": "Analyze drop-off, loss, cancellation, and retention-like behavior across funnel stages.",
+      "used_by_agents": [
+        "business_insight"
+      ]
+    },
+    {
+      "id": "competitive-battlecard-creation",
+      "category": "sales_strategy",
+      "purpose": "Structure competitor, battle-fail, and field-action insights into sales battlecards.",
+      "used_by_agents": [
+        "business_insight",
+        "report_generation"
+      ]
+    },
+    {
+      "id": "financial-modeling",
+      "category": "finance",
+      "purpose": "Build target gap, scenario, ROI, resource allocation, and sensitivity models when financial inputs exist.",
+      "used_by_agents": [
+        "analysis_strategy",
+        "data_analysis"
+      ]
+    },
+    {
+      "id": "report-generation",
+      "category": "delivery",
+      "purpose": "Generate structured written reports with facts, interpretations, recommendations, and limitations.",
+      "used_by_agents": [
+        "report_generation"
+      ]
+    },
+    {
+      "id": "presentation-creation",
+      "category": "delivery",
+      "purpose": "Create presentation storylines, slide structures, and executive-ready deck sections.",
+      "used_by_agents": [
+        "report_generation"
+      ]
+    },
+    {
+      "id": "proposal-generation",
+      "category": "delivery",
+      "purpose": "Package recommended initiatives, scope, expected impact, and operating plan into proposal format.",
+      "used_by_agents": [
+        "report_generation"
+      ]
+    },
+    {
+      "id": "proofreading",
+      "category": "quality",
+      "purpose": "Polish wording, consistency, and executive readability after report generation.",
+      "used_by_agents": [
+        "report_generation"
+      ]
+    }
+  ],
+  "skill_routing": {
+    "principle": "Agents own orchestration and judgment; skills are reusable capability modules selected from question type, analysis method, data state, and output format.",
+    "routing_order": [
+      "question_type",
+      "analysis_methods",
+      "approval_gate",
+      "output_format"
+    ],
+    "default_sequence": [
+      "context-retrieval",
+      "data-cleaning",
+      "sql-query-generation",
+      "data-analysis",
+      "analytics-reporting",
+      "fact-checking",
+      "report-generation"
+    ],
+    "output_format_skills": {
+      "dashboard": [
+        "data-visualization",
+        "analytics-reporting"
+      ],
+      "markdown_report": [
+        "report-generation",
+        "proofreading"
+      ],
+      "ppt": [
+        "presentation-creation",
+        "proofreading"
+      ],
+      "proposal": [
+        "proposal-generation",
+        "presentation-creation"
+      ]
+    }
+  }
+}

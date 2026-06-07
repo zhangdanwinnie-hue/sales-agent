@@ -1,0 +1,213 @@
+{
+  "version": "0.1",
+  "source": {
+    "name": "ads_rpt_sal_ncs_register_to_order_sales_ssa_t_202605151845.csv",
+    "row_count": 109377,
+    "column_count": 800,
+    "grain_assumption": "one customer journey row with denormalized register, lead, opportunity, visit, test drive, order, customer and dealer attributes"
+  },
+  "business_objects": [
+    {
+      "name": "register",
+      "description": "registration and initial lead acquisition event",
+      "primary_keys": ["register_rcid"],
+      "time_fields": ["register_create_time", "register_time"],
+      "identity_fields": ["register_mobile_phone_number", "register_w_code"],
+      "dimension_fields": [
+        "register_dealer_id",
+        "register_brand_code",
+        "register_series",
+        "register_model",
+        "register_first_channel_name",
+        "register_second_channel_name",
+        "register_media_platform_name",
+        "register_campaign_name",
+        "register_cyd_region_name_zh",
+        "register_cyd_city_name_zh"
+      ],
+      "status_fields": ["register_valid_flag", "register_compliant_desc"]
+    },
+    {
+      "name": "lead",
+      "description": "sales lead after registration or dealer creation",
+      "primary_keys": ["leads_id", "leads_pipeline_unique_id"],
+      "time_fields": ["leads_create_time", "leads_modify_time"],
+      "identity_fields": ["leads_mobile_phone_number", "leads_cop_id"],
+      "dimension_fields": [
+        "leads_dealer_id",
+        "leads_brand_code_ssc",
+        "leads_series_code_ssc",
+        "leads_channel_name",
+        "leads_sub_channel_name",
+        "leads_media_platform_name",
+        "leads_campaign_name",
+        "leads_star_level",
+        "leads_expected_buy_time_desc"
+      ],
+      "status_fields": ["leads_follow_status_desc", "leads_merge_status_desc", "leads_phone_status"],
+      "measure_fields": [
+        "leads_first_follow_mindiff",
+        "leads_dealer_cnt_nation_ytd",
+        "leads_channel_cnt_nation_ytd",
+        "leads_new_flag_nation_180d"
+      ]
+    },
+    {
+      "name": "opportunity",
+      "description": "dealer sales opportunity and pipeline stage",
+      "primary_keys": ["oppty_id"],
+      "time_fields": ["oppty_create_time", "oppty_opportunity_time", "oppty_pipeline_stage_business_time"],
+      "identity_fields": ["oppty_mobile_phone_number", "oppty_spark_id"],
+      "dimension_fields": [
+        "oppty_dealer_id",
+        "oppty_brand_code",
+        "oppty_series_code",
+        "oppty_model_code",
+        "oppty_star_level",
+        "oppty_opportunity_source_desc",
+        "oppty_campaign_name",
+        "oppty_follow_user_name_cn"
+      ],
+      "status_fields": [
+        "oppty_opportunity_status_desc",
+        "oppty_pipeline_stage_desc",
+        "oppty_deleted_desc",
+        "oppty_call_flag"
+      ],
+      "measure_fields": [
+        "oppty_opportunity_follow_times",
+        "oppty_leads_group_follow_times",
+        "oppty_first_oppty_follow_mindiff",
+        "oppty_leads_sr_datediff",
+        "oppty_td_datediff",
+        "oppty_order_datediff"
+      ],
+      "reason_fields": [
+        "oppty_refuse_reason_type_desc",
+        "oppty_battle_fail_primary_reason_desc",
+        "oppty_battle_fail_secondary_reason_desc",
+        "oppty_opportunity_last_battle_fail_primary_reason_desc"
+      ]
+    },
+    {
+      "name": "visit",
+      "description": "showroom visit and reception event",
+      "primary_keys": ["visit_id"],
+      "time_fields": ["visit_arrival_time", "visit_create_time", "visit_reception_start_time", "visit_reception_end_time"],
+      "identity_fields": ["visit_mobile_phone_number", "visit_spark_id"],
+      "dimension_fields": [
+        "visit_dealer_id",
+        "visit_brand_code",
+        "visit_series_code",
+        "visit_customer_visit_type_desc",
+        "visit_purpose_desc",
+        "visit_follow_user_name_cn"
+      ],
+      "status_fields": ["visit_valid_flag", "visit_is_active_desc", "visit_deleted_desc", "visit_invitation_flag"],
+      "join_fields": ["visit_opportunity_id"]
+    },
+    {
+      "name": "test_drive",
+      "description": "test drive event",
+      "primary_keys": ["td_id"],
+      "time_fields": ["td_start_time", "td_end_time", "td_create_time"],
+      "identity_fields": ["td_mobile_phone_number", "td_spark_id", "td_customer_id"],
+      "dimension_fields": ["td_dealer_id", "td_brand_code", "td_series_code", "td_model_code", "td_executive_user_name_cn"],
+      "status_fields": ["td_test_drive_status_desc", "td_deleted_desc", "td_timely_follow_flag", "td_first_flag"],
+      "join_fields": ["td_opportunity_id"]
+    },
+    {
+      "name": "order",
+      "description": "vehicle order, cancellation, invoice and handover",
+      "primary_keys": ["order_id", "order_so_no"],
+      "time_fields": ["order_create_time", "order_first_confirm_time", "order_cancel_time", "order_invoice_date", "order_handover_time"],
+      "identity_fields": ["order_spark_id", "order_drawer_mobile_phone_number", "order_vin_17"],
+      "dimension_fields": [
+        "order_dealer_id",
+        "order_brand_code",
+        "order_series_code",
+        "order_model_code",
+        "order_sale_type_desc",
+        "order_consultant_name",
+        "order_customer_source_desc"
+      ],
+      "status_fields": [
+        "order_so_status_desc",
+        "order_deleted_desc",
+        "order_intake_flag",
+        "order_cancel_flag",
+        "order_handover_intake_flag",
+        "order_handover_cancel_flag"
+      ],
+      "reason_fields": ["order_cancel_reason"],
+      "measure_fields": ["order_handover_datediff", "order_first_sr_order_datediff", "order_sr_cnt_bfr_order"]
+    },
+    {
+      "name": "customer",
+      "description": "customer profile and loyalty attributes",
+      "primary_keys": ["customer_id", "customer_spark_id"],
+      "time_fields": ["customer_create_time", "customer_modify_time", "customer_last_login_time"],
+      "identity_fields": ["customer_mobile_phone_number", "customer_phone_number1", "customer_phone_number2"],
+      "dimension_fields": [
+        "customer_intent",
+        "customer_group_desc",
+        "customer_source_desc",
+        "customer_gender",
+        "customer_member_status",
+        "customer_loyal_flag",
+        "customer_loyal_vehicle_cnt"
+      ],
+      "status_fields": ["customer_real_customer_flag", "customer_deleted_desc", "customer_privacy_code"]
+    },
+    {
+      "name": "dealer_region",
+      "description": "dealer, region and sales area organization",
+      "primary_keys": ["dealer_id"],
+      "dimension_fields": [
+        "dealership_name_cn",
+        "dealership_type_name_cn",
+        "dealer_status_name",
+        "region_name_zh",
+        "city_name_zh",
+        "sales_bmw_big_area_name_zh",
+        "sales_bmw_small_area_name_zh",
+        "sales_mini_big_area_name_zh",
+        "sales_mini_small_area_name_zh"
+      ],
+      "measure_fields": ["dealer_dy_rating", "dealer_info_pday"]
+    }
+  ],
+  "join_graph": [
+    {
+      "from": "lead",
+      "to": "opportunity",
+      "keys": [["leads_opportunity_id", "oppty_id"], ["leads_mobile_phone_number", "oppty_mobile_phone_number"]],
+      "confidence": "medium",
+      "note": "Prefer explicit opportunity id when populated. Mobile phone should be masked and only used for controlled matching."
+    },
+    {
+      "from": "opportunity",
+      "to": "visit",
+      "keys": [["oppty_id", "visit_opportunity_id"]],
+      "confidence": "high"
+    },
+    {
+      "from": "opportunity",
+      "to": "test_drive",
+      "keys": [["oppty_id", "td_opportunity_id"]],
+      "confidence": "high"
+    },
+    {
+      "from": "opportunity",
+      "to": "order",
+      "keys": [["oppty_id", "order_customer_opportunity_id"], ["oppty_spark_id", "order_spark_id"]],
+      "confidence": "medium"
+    }
+  ],
+  "data_risks": [
+    "The file is a denormalized wide table; distinct counts must be explicit to avoid double counting.",
+    "Chinese text appears with encoding issues in the quick shell preview; final ingestion should specify the correct source encoding.",
+    "PII fields such as mobile phone, VIN and customer ids must be masked by default.",
+    "Target, media cost, stock, price and competitive market data are not present in this CSV."
+  ]
+}

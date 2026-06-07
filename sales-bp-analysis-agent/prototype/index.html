@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sales BP Analysis Agent Workbench</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">BP</div>
+          <div>
+            <h1>Sales BP Agent</h1>
+            <p>Analysis Workbench</p>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="主导航">
+          <button class="nav-item active" data-page="problem">问题工作台</button>
+          <button class="nav-item" data-page="canvas">方案画布</button>
+          <button class="nav-item" data-page="data">数据匹配</button>
+          <button class="nav-item" data-page="metrics">口径确认</button>
+          <button class="nav-item" data-page="run">分析执行</button>
+          <button class="nav-item" data-page="insights">洞察审核</button>
+          <button class="nav-item" data-page="report">报告行动</button>
+        </nav>
+
+        <div class="gate-panel">
+          <h2>BA 确认流</h2>
+          <div id="gateList" class="gate-list"></div>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">通用业务问题驱动</p>
+            <h2 id="pageTitle">问题工作台</h2>
+          </div>
+          <div class="top-actions">
+            <select id="audienceSelect" aria-label="报告受众">
+              <option>Sales BP</option>
+              <option>区域经理</option>
+              <option>管理层</option>
+            </select>
+            <button id="savePlaybookBtn" class="button secondary">保存 Playbook</button>
+          </div>
+        </header>
+
+        <section id="problem" class="page active">
+          <div class="page-grid two-col">
+            <section class="panel wide">
+              <div class="panel-head">
+                <h3>业务问题</h3>
+                <span class="status-pill active">待确认</span>
+              </div>
+              <textarea id="questionInput" rows="4">华东区 4 月订单量低于预期，主要缺口来自哪里？是否和渠道质量、经销商承接或车系结构有关？</textarea>
+              <div class="form-grid">
+                <label>
+                  <span>业务范围</span>
+                  <input id="scopeInput" value="华东区 | BMW | 新车销售" />
+                </label>
+                <label>
+                  <span>时间范围</span>
+                  <input id="periodInput" value="2026-04 vs 2026-03" />
+                </label>
+                <label>
+                  <span>对比基准</span>
+                  <select id="baselineInput">
+                    <option>环比</option>
+                    <option>同比</option>
+                    <option>目标差距</option>
+                    <option>同级区域对标</option>
+                  </select>
+                </label>
+                <label>
+                  <span>核心指标</span>
+                  <select id="metricInput">
+                    <option>订单量</option>
+                    <option>交车量</option>
+                    <option>线索到订单转化率</option>
+                    <option>有效到店率</option>
+                  </select>
+                </label>
+              </div>
+              <div class="button-row">
+                <button id="classifyBtn" class="button primary">生成问题分类</button>
+                <button id="confirmProblemBtn" class="button success">确认问题</button>
+              </div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-head">
+                <h3>识别结果</h3>
+                <span id="classificationStatus" class="status-pill">未生成</span>
+              </div>
+              <div id="classificationBox" class="classification-box">
+                <p class="muted">等待 Agent 识别业务问题类型。</p>
+              </div>
+            </section>
+          </div>
+
+          <section class="band">
+            <div class="band-head">
+              <h3>推荐模板</h3>
+              <p>模板由问题类型、分析方法、指标和审批点组成。</p>
+            </div>
+            <div class="template-grid" id="templateGrid"></div>
+          </section>
+        </section>
+
+        <section id="canvas" class="page">
+          <div class="page-grid two-col">
+            <section class="panel wide">
+              <div class="panel-head">
+                <h3>分析方案画布</h3>
+                <span class="status-pill active">方案草案</span>
+              </div>
+              <div class="hypothesis-layout">
+                <div class="root-node">
+                  <span>目标</span>
+                  <strong>解释订单缺口并定位可行动抓手</strong>
+                </div>
+                <div class="branch-grid" id="hypothesisBranches"></div>
+              </div>
+              <div class="button-row">
+                <button id="addBranchBtn" class="button secondary">增加分析分支</button>
+                <button id="confirmPlanBtn" class="button success">确认方案</button>
+              </div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-head">
+                <h3>方法组合</h3>
+                <span class="status-pill">可编辑</span>
+              </div>
+              <div id="methodList" class="method-list"></div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-head">
+                <h3>推荐 Skills</h3>
+                <span class="status-pill active">自动路由</span>
+              </div>
+              <div id="skillRoutingList" class="skill-routing-list"></div>
+            </section>
+          </div>
+        </section>
+
+        <section id="data" class="page">
+          <div class="summary-strip">
+            <div>
+              <span>当前数据行数</span>
+              <strong>109,377</strong>
+            </div>
+            <div>
+              <span>字段数</span>
+              <strong>800</strong>
+            </div>
+            <div>
+              <span>可识别对象</span>
+              <strong>8</strong>
+            </div>
+            <div>
+              <span>敏感字段策略</span>
+              <strong>默认脱敏</strong>
+            </div>
+          </div>
+
+          <div class="page-grid two-col">
+            <section class="panel wide">
+              <div class="panel-head">
+                <h3>数据能力匹配</h3>
+                <span class="status-pill active">待确认</span>
+              </div>
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>分析分支</th>
+                    <th>数据状态</th>
+                    <th>可用对象</th>
+                    <th>缺口</th>
+                  </tr>
+                </thead>
+                <tbody id="dataCapabilityRows"></tbody>
+              </table>
+              <div class="button-row">
+                <button id="confirmDataBtn" class="button success">确认数据匹配</button>
+              </div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-head">
+                <h3>语义对象</h3>
+                <span class="status-pill">已读取</span>
+              </div>
+              <div id="objectInventory" class="object-inventory"></div>
+            </section>
+          </div>
+        </section>
+
+        <section id="metrics" class="page">
+          <section class="panel">
+            <div class="panel-head">
+              <h3>指标与口径</h3>
+              <span class="status-pill active">BA 确认</span>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>指标</th>
+                  <th>定义</th>
+                  <th>公式</th>
+                  <th>口径状态</th>
+                </tr>
+              </thead>
+              <tbody id="metricRows"></tbody>
+            </table>
+            <div class="button-row">
+              <button id="confirmMetricsBtn" class="button success">确认口径</button>
+            </div>
+          </section>
+        </section>
+
+        <section id="run" class="page">
+          <div class="page-grid two-col">
+            <section class="panel wide">
+              <div class="panel-head">
+                <h3>模块执行</h3>
+                <span id="runStatus" class="status-pill">未开始</span>
+              </div>
+              <div id="realCaseBanner" class="case-banner">
+                <strong>真实 CSV 案例数据加载中</strong>
+                <span>读取 `prototype/data/analysis-case.json` 后会展示真实聚合结果。</span>
+              </div>
+              <div id="realKpis" class="kpi-grid"></div>
+              <div id="runModules" class="run-modules"></div>
+              <div class="button-row">
+                <button id="runAnalysisBtn" class="button primary">执行分析</button>
+              </div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-head">
+                <h3>运行摘要</h3>
+                <span id="summarySourceStatus" class="status-pill">真实数据</span>
+              </div>
+              <div id="realFunnelChart" class="mini-chart" aria-label="真实漏斗"></div>
+              <div class="subsection">
+                <h4>月度趋势</h4>
+                <table class="data-table compact">
+                  <thead>
+                    <tr>
+                      <th>月份</th>
+                      <th>线索</th>
+                      <th>订单</th>
+                      <th>线索到订单</th>
+                    </tr>
+                  </thead>
+                  <tbody id="monthlyTrendRows"></tbody>
+                </table>
+              </div>
+              <div class="note-box">
+                <strong>数据限制</strong>
+                <p id="realLimitations">缺少目标、投放成本、库存价格和竞品市场数据。相关判断只能作为候选根因。</p>
+              </div>
+            </section>
+          </div>
+
+          <section class="panel dimension-panel">
+            <div class="panel-head">
+              <h3>真实维度拆解</h3>
+              <span class="status-pill done">CSV 聚合</span>
+            </div>
+            <div id="dimensionCards" class="dimension-grid"></div>
+          </section>
+        </section>
+
+        <section id="insights" class="page">
+          <section class="panel">
+            <div class="panel-head">
+              <h3>洞察审核</h3>
+              <span class="status-pill active">3 条待审</span>
+            </div>
+            <div id="insightList" class="insight-list"></div>
+            <div class="button-row">
+              <button id="confirmInsightsBtn" class="button success">确认已采纳洞察</button>
+            </div>
+          </section>
+        </section>
+
+        <section id="report" class="page">
+          <div class="page-grid two-col">
+            <section class="panel wide">
+              <div class="panel-head">
+                <h3>报告故事线</h3>
+                <span class="status-pill active">草稿</span>
+              </div>
+              <ol id="storyline" class="storyline"></ol>
+              <div class="button-row">
+                <button id="confirmReportBtn" class="button success">确认报告</button>
+              </div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-head">
+                <h3>行动清单</h3>
+                <span class="status-pill">待分派</span>
+              </div>
+              <div id="actionList" class="action-list"></div>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
