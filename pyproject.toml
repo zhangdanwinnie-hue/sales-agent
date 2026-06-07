@@ -1,0 +1,19 @@
+[project]
+name = "ba-analysis-agent"
+version = "0.1.0"
+description = "BA daily data analysis agent with human approval gates."
+requires-python = ">=3.10"
+dependencies = [
+  "openpyxl>=3.1.0",
+  "anthropic>=0.74.0",
+]
+
+[project.scripts]
+ba-agent = "ba_analysis_agent.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
