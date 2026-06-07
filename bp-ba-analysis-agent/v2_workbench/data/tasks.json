@@ -1,0 +1,926 @@
+{
+  "tasks": [
+    {
+      "task_id": "task_a1e06c71",
+      "task_name": "客流下降原因分析",
+      "business_question": "近期客流下降明显，想分析是哪些渠道在下降，以及新客获取和老客回店的表现变化。",
+      "analysis_purpose": "定位客流下降的核心原因，并给出可执行改善动作。",
+      "time_range": "2026/01/01 - 2026/03/31",
+      "comparison_period": "2025/10/01 - 2025/12/31",
+      "data_source": "sales_demo",
+      "status": "report_ready",
+      "current_page": "report_generation",
+      "selected_dimensions": [
+        "渠道维度",
+        "时间维度",
+        "区域维度",
+        "客户维度",
+        "车型维度",
+        "经销商维度",
+        "活动维度"
+      ],
+      "recommended_dimensions": [
+        "渠道维度",
+        "时间维度",
+        "区域维度",
+        "客户维度",
+        "车型维度"
+      ],
+      "hypotheses": [
+        {
+          "id": "hyp_d5eb7121",
+          "title": "高意向线索供给下降拉低北极星指标",
+          "rationale": "如果 leads 和 oppty 同时下降，说明问题优先出在线索供给侧。",
+          "metrics": [
+            "leads",
+            "oppty",
+            "leads/register"
+          ],
+          "core": true,
+          "evidence_strength": "待验证",
+          "missing_data": [],
+          "status": "未验证"
+        },
+        {
+          "id": "hyp_cb826b66",
+          "title": "到店转化下降导致漏斗后段损失",
+          "rationale": "如果 visit/oppty 下降更明显，需要检查邀约、试驾、门店承接。",
+          "metrics": [
+            "visit/oppty",
+            "td/visit",
+            "order/oppty"
+          ],
+          "core": false,
+          "evidence_strength": "待验证",
+          "missing_data": [],
+          "status": "未验证"
+        },
+        {
+          "id": "hyp_b18b5394",
+          "title": "区域活动和渠道结构变化造成负贡献集中",
+          "rationale": "贡献度若集中在少数区域或渠道，优先定位局部运营问题。",
+          "metrics": [
+            "channel contribution",
+            "region contribution"
+          ],
+          "core": false,
+          "evidence_strength": "待验证",
+          "missing_data": [],
+          "status": "未验证"
+        }
+      ],
+      "report": {
+        "conclusion": "客流下降主要由高意向线索减少和到店转化下降共同驱动。",
+        "evidence": "渠道贡献度显示自然流量和区域活动线索的负贡献最高，visit/oppty 转化率同步下降。",
+        "action": "优先修复高意向线索供给，针对下降区域补充邀约动作，并建立周度漏斗监控。"
+      },
+      "artifacts": [
+        {
+          "id": "art_clarification_task_a1e06c71",
+          "task_id": "task_a1e06c71",
+          "type": "clarification",
+          "title": "需求澄清文档",
+          "summary": "明确问题、周期、口径、数据源和待追问事项。",
+          "content": [
+            "业务问题：近期客流下降明显，想分析是哪些渠道在下降，以及新客获取和老客回店的表现变化。",
+            "分析目的：定位客流下降的核心原因，并给出可执行改善动作。",
+            "周期：2026/01/01 - 2026/03/31；对比：2025/10/01 - 2025/12/31",
+            "AI 追问：本次下降判断使用哪个北极星指标：线索量、到店量、订单量，还是整体转化率？",
+            "AI 追问：对比周期是否需要排除春节、活动日或门店休假等异常日期？",
+            "AI 追问：是否需要按区域、渠道、车型和新老客户拆分贡献度？",
+            "AI 追问：渠道口径是否区分自然流量、付费媒体、区域活动和经销商自建线索？",
+            "AI 追问：客流口径是 register、leads、visit 还是线下进店客流？"
+          ],
+          "status": "confirmed",
+          "updated_at": "2026-05-25T15:22:56"
+        },
+        {
+          "id": "art_plan_task_a1e06c71",
+          "task_id": "task_a1e06c71",
+          "type": "analysis_plan",
+          "title": "分析思路文档",
+          "summary": "从北极星指标出发，按指标树、维度贡献、假设验证推进。",
+          "content": [
+            "路径 1：北极星指标 -> 漏斗阶段 -> 关键转化率。",
+            "路径 2：整体下降 -> 维度贡献 -> 负贡献切片。",
+            "路径 3：业务假设 -> 证据强弱 -> 待补数据。"
+          ],
+          "status": "confirmed",
+          "updated_at": "2026-05-25T15:22:56"
+        },
+        {
+          "id": "art_dimensions_task_a1e06c71",
+          "task_id": "task_a1e06c71",
+          "type": "dimension_recommendation",
+          "title": "维度推荐文档",
+          "summary": "推荐优先拆解渠道、时间、区域、客户、车型和经销商。",
+          "content": [
+            "推荐维度：渠道维度",
+            "推荐维度：时间维度",
+            "推荐维度：区域维度",
+            "推荐维度：客户维度",
+            "推荐维度：车型维度",
+            "推荐维度：经销商维度",
+            "推荐维度：活动维度"
+          ],
+          "status": "updated",
+          "updated_at": "2026-05-25T15:22:56"
+        },
+        {
+          "id": "art_hypotheses_task_a1e06c71",
+          "task_id": "task_a1e06c71",
+          "type": "hypothesis_pool",
+          "title": "假设池文档",
+          "summary": "沉淀 BA 可编辑、可标记核心的分析假设。",
+          "content": [
+            "核心假设：高意向线索供给下降拉低北极星指标；指标：leads, oppty, leads/register",
+            "普通假设：到店转化下降导致漏斗后段损失；指标：visit/oppty, td/visit, order/oppty",
+            "普通假设：区域活动和渠道结构变化造成负贡献集中；指标：channel contribution, region contribution"
+          ],
+          "status": "updated",
+          "updated_at": "2026-05-25T15:22:56"
+        },
+        {
+          "id": "art_insight_task_a1e06c71",
+          "task_id": "task_a1e06c71",
+          "type": "data_insight",
+          "title": "数据洞察文档",
+          "summary": "北极星指标归因、贡献度和假设验证结论。",
+          "content": [
+            "订单量下降 12.4%，主要由线索量下降和到店转化走弱共同驱动。",
+            "负贡献集中在付费媒体、自然流量、华东区域和新客群体。",
+            "建议优先补充渠道投放质量、区域活动排期、门店邀约过程数据。"
+          ],
+          "status": "confirmed",
+          "updated_at": "2026-05-25T15:22:56"
+        },
+        {
+          "id": "art_sql_task_a1e06c71",
+          "task_id": "task_a1e06c71",
+          "type": "sql_review",
+          "title": "SQL 业务解释文档",
+          "summary": "把 SQL 取数逻辑翻译为 BA 可审阅的业务语言。",
+          "content": [
+            "按渠道和区域汇总线索、到店、订单，识别订单下降来自流量供给还是转化效率。",
+            "把本期和对比期订单差额按维度切开，找出负贡献最大的业务切片。"
+          ],
+          "status": "draft",
+          "updated_at": "2026-05-25T15:22:56"
+        },
+        {
+          "id": "art_report_task_a1e06c71",
+          "task_id": "task_a1e06c71",
+          "type": "cea_report",
+          "title": "结论-证据-行动报告",
+          "summary": "用于评审和交付的 BA 可编辑报告。",
+          "content": [
+            "结论：客流下降主要由高意向线索减少和到店转化下降共同驱动。",
+            "证据：渠道贡献度显示自然流量和区域活动线索的负贡献最高，visit/oppty 转化率同步下降。",
+            "行动：优先修复高意向线索供给，针对下降区域补充邀约动作，并建立周度漏斗监控。"
+          ],
+          "status": "confirmed",
+          "updated_at": "2026-05-25T15:22:56"
+        }
+      ],
+      "messages": [
+        {
+          "id": "msg_2f898ce7",
+          "role": "agent",
+          "content": "我已理解业务问题，先补齐口径、范围、对比周期和可用数据，再进入分析思路设计。",
+          "stage": "task_creation",
+          "created_at": "2026-05-25T09:45:11"
+        },
+        {
+          "id": "msg_a2612467",
+          "role": "ba",
+          "content": "已保存任务输入草稿。",
+          "stage": "task_creation",
+          "created_at": "2026-05-25T09:45:19"
+        },
+        {
+          "id": "msg_1e0e20eb",
+          "role": "agent",
+          "content": "我已刷新 AI 追问和推荐维度，确认后会进入分析工作台。",
+          "stage": "task_creation",
+          "created_at": "2026-05-25T09:45:19"
+        },
+        {
+          "id": "msg_c70c1762",
+          "role": "agent",
+          "content": "任务输入已确认。请在分析工作台选择维度并完善假设池。",
+          "stage": "analysis_design",
+          "created_at": "2026-05-25T09:45:19"
+        },
+        {
+          "id": "msg_d75b58fd",
+          "role": "ba",
+          "content": "已更新分析维度和假设池。",
+          "stage": "analysis_design",
+          "created_at": "2026-05-25T09:45:27"
+        },
+        {
+          "id": "msg_c6970c85",
+          "role": "agent",
+          "content": "分析思路已确认，开始生成数据洞察。确认分析思路配置。",
+          "stage": "data_insight",
+          "created_at": "2026-05-25T09:45:27"
+        },
+        {
+          "id": "msg_34cf9cd9",
+          "role": "agent",
+          "content": "数据洞察已确认，报告已按结论-证据-行动结构生成。确认数据洞察。",
+          "stage": "report_generation",
+          "created_at": "2026-05-25T09:45:37"
+        },
+        {
+          "id": "msg_e3a6f2a7",
+          "role": "ba",
+          "content": "已编辑报告内容。",
+          "stage": "report_generation",
+          "created_at": "2026-05-25T09:45:53"
+        },
+        {
+          "id": "msg_a8e84cf8",
+          "role": "ba",
+          "content": "已编辑报告内容。",
+          "stage": "report_generation",
+          "created_at": "2026-05-25T15:10:37"
+        },
+        {
+          "id": "msg_6cadff55",
+          "role": "ba",
+          "content": "取消经销商维度",
+          "stage": "report_generation",
+          "created_at": "2026-05-25T15:22:11"
+        },
+        {
+          "id": "msg_b05b645f",
+          "role": "agent",
+          "content": "已处理。已加入：经销商维度 你可以继续用自然语言让我补维度、加假设、生成洞察或改报告。",
+          "stage": "analysis_design",
+          "created_at": "2026-05-25T15:22:11"
+        },
+        {
+          "id": "msg_8389374e",
+          "role": "ba",
+          "content": "活动维度",
+          "stage": "analysis_design",
+          "created_at": "2026-05-25T15:22:26"
+        },
+        {
+          "id": "msg_dbcec6a6",
+          "role": "agent",
+          "content": "已处理。已加入：活动维度 你可以继续用自然语言让我补维度、加假设、生成洞察或改报告。",
+          "stage": "analysis_design",
+          "created_at": "2026-05-25T15:22:26"
+        },
+        {
+          "id": "msg_2ac8ce1d",
+          "role": "ba",
+          "content": "已更新分析维度和假设池。",
+          "stage": "analysis_design",
+          "created_at": "2026-05-25T15:22:35"
+        },
+        {
+          "id": "msg_1b7d3819",
+          "role": "agent",
+          "content": "分析思路已确认，开始生成数据洞察。确认分析思路配置。",
+          "stage": "data_insight",
+          "created_at": "2026-05-25T15:22:35"
+        },
+        {
+          "id": "msg_ee735830",
+          "role": "agent",
+          "content": "数据洞察已确认，报告已按结论-证据-行动结构生成。确认数据洞察。",
+          "stage": "report_generation",
+          "created_at": "2026-05-25T15:22:54"
+        },
+        {
+          "id": "msg_fb25a087",
+          "role": "ba",
+          "content": "已编辑报告内容。",
+          "stage": "report_generation",
+          "created_at": "2026-05-25T15:22:56"
+        }
+      ],
+      "created_at": "2026-05-25T09:45:11",
+      "updated_at": "2026-05-25T15:22:56"
+    },
+    {
+      "task_id": "task_ee001caf",
+      "task_name": "客流下降原因分析",
+      "business_question": "近期客流下降明显，想分析是哪些渠道在下降，以及新客获取和老客回店的表现变化。",
+      "analysis_purpose": "定位客流下降的核心原因，并给出可执行改善动作。",
+      "time_range": "2026/01/01 - 2026/03/31",
+      "comparison_period": "2025/10/01 - 2025/12/31",
+      "data_source": "sales_demo",
+      "status": "input_confirmed",
+      "current_page": "analysis_design",
+      "selected_dimensions": [],
+      "recommended_dimensions": [
+        "渠道维度",
+        "时间维度",
+        "区域维度",
+        "客户维度",
+        "车型维度"
+      ],
+      "hypotheses": [
+        {
+          "id": "hyp_48a9df31",
+          "title": "高意向线索供给下降拉低北极星指标",
+          "rationale": "如果 leads 和 oppty 同时下降，说明问题优先出在线索供给侧。",
+          "metrics": [
+            "leads",
+            "oppty",
+            "leads/register"
+          ],
+          "core": true,
+          "evidence_strength": "待验证",
+          "missing_data": [],
+          "status": "未验证"
+        },
+        {
+          "id": "hyp_78f10108",
+          "title": "到店转化下降导致漏斗后段损失",
+          "rationale": "如果 visit/oppty 下降更明显，需要检查邀约、试驾、门店承接。",
+          "metrics": [
+            "visit/oppty",
+            "td/visit",
+            "order/oppty"
+          ],
+          "core": false,
+          "evidence_strength": "待验证",
+          "missing_data": [],
+          "status": "未验证"
+        },
+        {
+          "id": "hyp_414bf05f",
+          "title": "区域活动和渠道结构变化造成负贡献集中",
+          "rationale": "贡献度若集中在少数区域或渠道，优先定位局部运营问题。",
+          "metrics": [
+            "channel contribution",
+            "region contribution"
+          ],
+          "core": false,
+          "evidence_strength": "待验证",
+          "missing_data": [],
+          "status": "未验证"
+        }
+      ],
+      "report": {
+        "conclusion": "客流下降主要由高意向线索减少和到店转化下降共同驱动。",
+        "evidence": "渠道贡献度显示自然流量和区域活动线索的负贡献最高，visit/oppty 转化率同步下降。",
+        "action": "优先修复高意向线索供给，针对下降区域补充邀约动作，并建立周度漏斗监控。"
+      },
+      "artifacts": [
+        {
+          "id": "art_clarification_task_ee001caf",
+          "task_id": "task_ee001caf",
+          "type": "clarification",
+          "title": "需求澄清文档",
+          "summary": "明确问题、周期、口径、数据源和待追问事项。",
+          "content": [
+            "业务问题：近期客流下降明显，想分析是哪些渠道在下降，以及新客获取和老客回店的表现变化。",
+            "分析目的：定位客流下降的核心原因，并给出可执行改善动作。",
+            "周期：2026/01/01 - 2026/03/31；对比：2025/10/01 - 2025/12/31",
+            "AI 追问：本次下降判断使用哪个北极星指标：线索量、到店量、订单量，还是整体转化率？",
+            "AI 追问：对比周期是否需要排除春节、活动日或门店休假等异常日期？",
+            "AI 追问：是否需要按区域、渠道、车型和新老客户拆分贡献度？",
+            "AI 追问：渠道口径是否区分自然流量、付费媒体、区域活动和经销商自建线索？",
+            "AI 追问：客流口径是 register、leads、visit 还是线下进店客流？"
+          ],
+          "status": "confirmed",
+          "updated_at": "2026-05-25T09:44:40"
+        },
+        {
+          "id": "art_plan_task_ee001caf",
+          "task_id": "task_ee001caf",
+          "type": "analysis_plan",
+          "title": "分析思路文档",
+          "summary": "从北极星指标出发，按指标树、维度贡献、假设验证推进。",
+          "content": [
+            "路径 1：北极星指标 -> 漏斗阶段 -> 关键转化率。",
+            "路径 2：整体下降 -> 维度贡献 -> 负贡献切片。",
+            "路径 3：业务假设 -> 证据强弱 -> 待补数据。"
+          ],
+          "status": "draft",
+          "updated_at": "2026-05-25T09:44:40"
+        },
+        {
+          "id": "art_dimensions_task_ee001caf",
+          "task_id": "task_ee001caf",
+          "type": "dimension_recommendation",
+          "title": "维度推荐文档",
+          "summary": "推荐优先拆解渠道、时间、区域、客户、车型和经销商。",
+          "content": [
+            "推荐维度：渠道维度",
+            "推荐维度：时间维度",
+            "推荐维度：区域维度",
+            "推荐维度：客户维度",
+            "推荐维度：车型维度"
+          ],
+          "status": "draft",
+          "updated_at": "2026-05-25T09:44:40"
+        },
+        {
+          "id": "art_hypotheses_task_ee001caf",
+          "task_id": "task_ee001caf",
+          "type": "hypothesis_pool",
+          "title": "假设池文档",
+          "summary": "沉淀 BA 可编辑、可标记核心的分析假设。",
+          "content": [
+            "核心假设：高意向线索供给下降拉低北极星指标；指标：leads, oppty, leads/register",
+            "普通假设：到店转化下降导致漏斗后段损失；指标：visit/oppty, td/visit, order/oppty",
+            "普通假设：区域活动和渠道结构变化造成负贡献集中；指标：channel contribution, region contribution"
+          ],
+          "status": "updated",
+          "updated_at": "2026-05-25T09:44:40"
+        }
+      ],
+      "messages": [
+        {
+          "id": "msg_c4b5afa6",
+          "role": "agent",
+          "content": "我已理解业务问题，先补齐口径、范围、对比周期和可用数据，再进入分析思路设计。",
+          "stage": "task_creation",
+          "created_at": "2026-05-25T09:44:34"
+        },
+        {
+          "id": "msg_ccefe5aa",
+          "role": "ba",
+          "content": "已保存任务输入草稿。",
+          "stage": "task_creation",
+          "created_at": "2026-05-25T09:44:40"
+        },
+        {
+          "id": "msg_d5018baa",
+          "role": "agent",
+          "content": "我已刷新 AI 追问和推荐维度，确认后会进入分析工作台。",
+          "stage": "task_creation",
+          "created_at": "2026-05-25T09:44:40"
+        },
+        {
+          "id": "msg_64c34746",
+          "role": "agent",
+          "content": "任务输入已确认。请在分析工作台选择维度并完善假设池。",
+          "stage": "analysis_design",
+          "created_at": "2026-05-25T09:44:40"
+        }
+      ],
+      "created_at": "2026-05-25T09:44:34",
+      "updated_at": "2026-05-25T09:44:40"
+    },
+    {
+      "task_id": "task_6c4600ff",
+      "task_name": "客流下降原因分析",
+      "business_question": "近期客流下降明显，想分析是哪些渠道在下降，以及新客获取和老客回店的表现变化。",
+      "analysis_purpose": "定位客流下降的核心原因，并给出可执行改善动作。",
+      "time_range": "2026/01/01 - 2026/03/31",
+      "comparison_period": "2025/10/01 - 2025/12/31",
+      "data_source": "sales_demo",
+      "status": "input_confirmed",
+      "current_page": "analysis_design",
+      "selected_dimensions": [
+        "渠道维度",
+        "时间维度",
+        "区域维度",
+        "客户维度",
+        "车型维度",
+        "经销商维度",
+        "活动维度"
+      ],
+      "recommended_dimensions": [
+        "渠道维度",
+        "时间维度",
+        "区域维度",
+        "客户维度",
+        "车型维度"
+      ],
+      "hypotheses": [
+        {
+          "id": "hyp_ac0c01f9",
+          "title": "高意向线索供给下降拉低北极星指标",
+          "rationale": "如果 leads 和 oppty 同时下降，说明问题优先出在线索供给侧。",
+          "metrics": [
+            "leads",
+            "oppty",
+            "leads/register"
+          ],
+          "core": true,
+          "evidence_strength": "待验证",
+          "missing_data": [],
+          "status": "未验证"
+        },
+        {
+          "id": "hyp_955e5d38",
+          "title": "到店转化下降导致漏斗后段损失",
+          "rationale": "如果 visit/oppty 下降更明显，需要检查邀约、试驾、门店承接。",
+          "metrics": [
+            "visit/oppty",
+            "td/visit",
+            "order/oppty"
+          ],
+          "core": false,
+          "evidence_strength": "待验证",
+          "missing_data": [],
+          "status": "未验证"
+        },
+        {
+          "id": "hyp_94fc65b5",
+          "title": "区域活动和渠道结构变化造成负贡献集中",
+          "rationale": "贡献度若集中在少数区域或渠道，优先定位局部运营问题。",
+          "metrics": [
+            "channel contribution",
+            "region contribution"
+          ],
+          "core": false,
+          "evidence_strength": "待验证",
+          "missing_data": [],
+          "status": "未验证"
+        },
+        {
+          "id": "hyp_5c0fe31c",
+          "title": "渠道投放质量下降导致线索转化差",
+          "rationale": "由 BA 在自然语言对话中补充：渠道投放质量下降导致线索转化差",
+          "metrics": [
+            "leads",
+            "channel contribution",
+            "leads/register",
+            "visit/oppty",
+            "td/visit",
+            "order/oppty"
+          ],
+          "core": false,
+          "evidence_strength": "待验证",
+          "missing_data": [
+            "待补充对应明细数据"
+          ],
+          "status": "未验证"
+        },
+        {
+          "id": "hyp_1a56fef4",
+          "title": "渠道投放质量下降导致线索转化差",
+          "rationale": "由 BA 在自然语言对话中补充：渠道投放质量下降导致线索转化差",
+          "metrics": [
+            "leads",
+            "channel contribution",
+            "leads/register",
+            "visit/oppty",
+            "td/visit",
+            "order/oppty"
+          ],
+          "core": false,
+          "evidence_strength": "待验证",
+          "missing_data": [
+            "待补充对应明细数据"
+          ],
+          "status": "未验证"
+        }
+      ],
+      "report": {
+        "conclusion": "客流和订单下滑不是单点问题，而是线索供给下降、到店转化走弱、区域承接不足叠加造成。",
+        "evidence": "订单量下降 12.4%，主要由线索量下降和到店转化走弱共同驱动。；负贡献集中在付费媒体、自然流量、华东区域和新客群体。；建议优先补充渠道投放质量、区域活动排期、门店邀约过程数据。",
+        "action": "建议先抓三件事：恢复高意向线索供给，锁定负贡献区域做邀约修复，把渠道-区域-门店漏斗监控改成周度复盘。"
+      },
+      "artifacts": [
+        {
+          "id": "art_clarification_task_6c4600ff",
+          "task_id": "task_6c4600ff",
+          "type": "clarification",
+          "title": "需求澄清文档",
+          "summary": "明确问题、周期、口径、数据源和待追问事项。",
+          "content": [
+            "业务问题：近期客流下降明显，想分析是哪些渠道在下降，以及新客获取和老客回店的表现变化。",
+            "分析目的：定位客流下降的核心原因，并给出可执行改善动作。",
+            "周期：2026/01/01 - 2026/03/31；对比：2025/10/01 - 2025/12/31",
+            "AI 追问：本次下降判断使用哪个北极星指标：线索量、到店量、订单量，还是整体转化率？",
+            "AI 追问：对比周期是否需要排除春节、活动日或门店休假等异常日期？",
+            "AI 追问：是否需要按区域、渠道、车型和新老客户拆分贡献度？",
+            "AI 追问：渠道口径是否区分自然流量、付费媒体、区域活动和经销商自建线索？",
+            "AI 追问：客流口径是 register、leads、visit 还是线下进店客流？"
+          ],
+          "status": "confirmed",
+          "updated_at": "2026-05-25T09:43:39"
+        },
+        {
+          "id": "art_plan_task_6c4600ff",
+          "task_id": "task_6c4600ff",
+          "type": "analysis_plan",
+          "title": "分析思路文档",
+          "summary": "从北极星指标出发，按指标树、维度贡献、假设验证推进。",
+          "content": [
+            "路径 1：北极星指标 -> 漏斗阶段 -> 关键转化率。",
+            "路径 2：整体下降 -> 维度贡献 -> 负贡献切片。",
+            "路径 3：业务假设 -> 证据强弱 -> 待补数据。"
+          ],
+          "status": "draft",
+          "updated_at": "2026-05-25T09:43:39"
+        },
+        {
+          "id": "art_dimensions_task_6c4600ff",
+          "task_id": "task_6c4600ff",
+          "type": "dimension_recommendation",
+          "title": "维度推荐文档",
+          "summary": "推荐优先拆解渠道、时间、区域、客户、车型和经销商。",
+          "content": [
+            "推荐维度：渠道维度",
+            "推荐维度：时间维度",
+            "推荐维度：区域维度",
+            "推荐维度：客户维度",
+            "推荐维度：车型维度",
+            "推荐维度：经销商维度",
+            "推荐维度：活动维度"
+          ],
+          "status": "updated",
+          "updated_at": "2026-05-25T09:43:39"
+        },
+        {
+          "id": "art_hypotheses_task_6c4600ff",
+          "task_id": "task_6c4600ff",
+          "type": "hypothesis_pool",
+          "title": "假设池文档",
+          "summary": "沉淀 BA 可编辑、可标记核心的分析假设。",
+          "content": [
+            "核心假设：高意向线索供给下降拉低北极星指标；指标：leads, oppty, leads/register",
+            "普通假设：到店转化下降导致漏斗后段损失；指标：visit/oppty, td/visit, order/oppty",
+            "普通假设：区域活动和渠道结构变化造成负贡献集中；指标：channel contribution, region contribution",
+            "普通假设：渠道投放质量下降导致线索转化差；指标：leads, channel contribution, leads/register, visit/oppty, td/visit, order/oppty",
+            "普通假设：渠道投放质量下降导致线索转化差；指标：leads, channel contribution, leads/register, visit/oppty, td/visit, order/oppty"
+          ],
+          "status": "updated",
+          "updated_at": "2026-05-25T09:43:39"
+        }
+      ],
+      "messages": [
+        {
+          "id": "msg_b12e5d9d",
+          "role": "agent",
+          "content": "我已理解业务问题，先补齐口径、范围、对比周期和可用数据，再进入分析思路设计。",
+          "stage": "task_creation",
+          "created_at": "2026-05-25T01:22:16"
+        },
+        {
+          "id": "msg_158da480",
+          "role": "ba",
+          "content": "已编辑报告内容。",
+          "stage": "report_generation",
+          "created_at": "2026-05-25T01:22:16"
+        },
+        {
+          "id": "msg_43eb97e0",
+          "role": "ba",
+          "content": "已编辑报告内容。",
+          "stage": "report_generation",
+          "created_at": "2026-05-25T01:22:29"
+        },
+        {
+          "id": "msg_fda600c0",
+          "role": "ba",
+          "content": "已编辑报告内容。",
+          "stage": "report_generation",
+          "created_at": "2026-05-25T01:32:52"
+        },
+        {
+          "id": "msg_4710ca42",
+          "role": "ba",
+          "content": "已保存任务输入草稿。",
+          "stage": "task_creation",
+          "created_at": "2026-05-25T01:33:05"
+        },
+        {
+          "id": "msg_630cea2e",
+          "role": "agent",
+          "content": "我已刷新 AI 追问和推荐维度，确认后会进入分析工作台。",
+          "stage": "task_creation",
+          "created_at": "2026-05-25T01:33:05"
+        },
+        {
+          "id": "msg_7d696718",
+          "role": "ba",
+          "content": "已保存任务输入草稿。",
+          "stage": "task_creation",
+          "created_at": "2026-05-25T01:33:06"
+        },
+        {
+          "id": "msg_27def05f",
+          "role": "agent",
+          "content": "我已刷新 AI 追问和推荐维度，确认后会进入分析工作台。",
+          "stage": "task_creation",
+          "created_at": "2026-05-25T01:33:06"
+        },
+        {
+          "id": "msg_1fe91690",
+          "role": "agent",
+          "content": "任务输入已确认。请在分析工作台选择维度并完善假设池。",
+          "stage": "analysis_design",
+          "created_at": "2026-05-25T01:33:06"
+        },
+        {
+          "id": "msg_ef1940ec",
+          "role": "ba",
+          "content": "已保存任务输入草稿。",
+          "stage": "task_creation",
+          "created_at": "2026-05-25T01:41:52"
+        },
+        {
+          "id": "msg_2fbc786f",
+          "role": "agent",
+          "content": "我已刷新 AI 追问和推荐维度，确认后会进入分析工作台。",
+          "stage": "task_creation",
+          "created_at": "2026-05-25T01:41:52"
+        },
+        {
+          "id": "msg_5b7f8e6e",
+          "role": "agent",
+          "content": "任务输入已确认。请在分析工作台选择维度并完善假设池。",
+          "stage": "analysis_design",
+          "created_at": "2026-05-25T01:41:52"
+        },
+        {
+          "id": "msg_d98f2ea8",
+          "role": "ba",
+          "content": "已更新分析维度和假设池。",
+          "stage": "analysis_design",
+          "created_at": "2026-05-25T01:41:54"
+        },
+        {
+          "id": "msg_f39d4ffb",
+          "role": "agent",
+          "content": "分析思路已确认，开始生成数据洞察。确认分析思路配置。",
+          "stage": "data_insight",
+          "created_at": "2026-05-25T01:41:54"
+        },
+        {
+          "id": "msg_be884bd2",
+          "role": "agent",
+          "content": "数据洞察已确认，报告已按结论-证据-行动结构生成。确认数据洞察。",
+          "stage": "report_generation",
+          "created_at": "2026-05-25T01:42:00"
+        },
+        {
+          "id": "msg_4d5efd69",
+          "role": "ba",
+          "content": "??????:???????????????",
+          "stage": "analysis_design",
+          "created_at": "2026-05-25T01:43:09"
+        },
+        {
+          "id": "msg_64656e9c",
+          "role": "agent",
+          "content": "我已经读取当前任务上下文。你可以直接说：“把维度加上经销商和活动”、“新增一个假设：渠道投放质量下降”、“基于现在的洞察生成报告”，我会直接更新工作台和过程文档。",
+          "stage": "analysis_design",
+          "created_at": "2026-05-25T01:43:09"
+        },
+        {
+          "id": "msg_d529980e",
+          "role": "ba",
+          "content": "???????????",
+          "stage": "analysis_design",
+          "created_at": "2026-05-25T01:43:09"
+        },
+        {
+          "id": "msg_9a743803",
+          "role": "agent",
+          "content": "我已经读取当前任务上下文。你可以直接说：“把维度加上经销商和活动”、“新增一个假设：渠道投放质量下降”、“基于现在的洞察生成报告”，我会直接更新工作台和过程文档。",
+          "stage": "analysis_design",
+          "created_at": "2026-05-25T01:43:09"
+        },
+        {
+          "id": "msg_2d7066d1",
+          "role": "ba",
+          "content": "??????????????????????",
+          "stage": "analysis_design",
+          "created_at": "2026-05-25T01:43:30"
+        },
+        {
+          "id": "msg_0bf46bdf",
+          "role": "agent",
+          "content": "我已经读取当前任务上下文。你可以直接说：“把维度加上经销商和活动”、“新增一个假设：渠道投放质量下降”、“基于现在的洞察生成报告”，我会直接更新工作台和过程文档。",
+          "stage": "analysis_design",
+          "created_at": "2026-05-25T01:43:30"
+        },
+        {
+          "id": "msg_98e733e3",
+          "role": "ba",
+          "content": "???????????",
+          "stage": "analysis_design",
+          "created_at": "2026-05-25T01:43:30"
+        },
+        {
+          "id": "msg_d14c716b",
+          "role": "agent",
+          "content": "我已经读取当前任务上下文。你可以直接说：“把维度加上经销商和活动”、“新增一个假设：渠道投放质量下降”、“基于现在的洞察生成报告”，我会直接更新工作台和过程文档。",
+          "stage": "analysis_design",
+          "created_at": "2026-05-25T01:43:30"
+        },
+        {
+          "id": "msg_ac0b71b3",
+          "role": "ba",
+          "content": "新增一个假设：渠道投放质量下降导致线索转化差",
+          "stage": "analysis_design",
+          "created_at": "2026-05-25T01:43:38"
+        },
+        {
+          "id": "msg_aa9e0f7d",
+          "role": "agent",
+          "content": "已处理。渠道投放质量下降导致线索转化差 你可以继续用自然语言让我补维度、加假设、生成洞察或改报告。",
+          "stage": "analysis_design",
+          "created_at": "2026-05-25T01:43:38"
+        },
+        {
+          "id": "msg_463246ff",
+          "role": "ba",
+          "content": "把维度加上经销商和活动",
+          "stage": "analysis_design",
+          "created_at": "2026-05-25T01:44:07"
+        },
+        {
+          "id": "msg_5eb50405",
+          "role": "agent",
+          "content": "已处理。已加入：经销商维度、活动维度 你可以继续用自然语言让我补维度、加假设、生成洞察或改报告。",
+          "stage": "analysis_design",
+          "created_at": "2026-05-25T01:44:07"
+        },
+        {
+          "id": "msg_82ec8f06",
+          "role": "ba",
+          "content": "新增一个假设：渠道投放质量下降导致线索转化差",
+          "stage": "analysis_design",
+          "created_at": "2026-05-25T09:40:15"
+        },
+        {
+          "id": "msg_55a53d34",
+          "role": "agent",
+          "content": "已处理。渠道投放质量下降导致线索转化差 你可以继续用自然语言让我补维度、加假设、生成洞察或改报告。",
+          "stage": "analysis_design",
+          "created_at": "2026-05-25T09:40:15"
+        },
+        {
+          "id": "msg_3ba53e5f",
+          "role": "ba",
+          "content": "把维度加上经销商和活动",
+          "stage": "analysis_design",
+          "created_at": "2026-05-25T09:40:15"
+        },
+        {
+          "id": "msg_2dc850b1",
+          "role": "agent",
+          "content": "我已经读取当前任务上下文。你可以直接说：“把维度加上经销商和活动”、“新增一个假设：渠道投放质量下降”、“基于现在的洞察生成报告”，我会直接更新工作台和过程文档。",
+          "stage": "analysis_design",
+          "created_at": "2026-05-25T09:40:15"
+        },
+        {
+          "id": "msg_68f1d448",
+          "role": "ba",
+          "content": "基于现在的洞察生成报告",
+          "stage": "data_insight",
+          "created_at": "2026-05-25T09:40:15"
+        },
+        {
+          "id": "msg_4ca73189",
+          "role": "agent",
+          "content": "已处理。已切换到数据洞察，并刷新归因树、贡献度和假设验证。；已按结论-证据-行动结构更新报告。 你可以继续用自然语言让我补维度、加假设、生成洞察或改报告。",
+          "stage": "report_generation",
+          "created_at": "2026-05-25T09:40:15"
+        },
+        {
+          "id": "msg_0818d95b",
+          "role": "ba",
+          "content": "把结论写得更像给老板看的",
+          "stage": "report_generation",
+          "created_at": "2026-05-25T09:40:51"
+        },
+        {
+          "id": "msg_55de7e79",
+          "role": "agent",
+          "content": "已处理。已按结论-证据-行动结构更新报告。 你可以继续用自然语言让我补维度、加假设、生成洞察或改报告。",
+          "stage": "report_generation",
+          "created_at": "2026-05-25T09:40:51"
+        },
+        {
+          "id": "msg_f2202205",
+          "role": "ba",
+          "content": "已保存任务输入草稿。",
+          "stage": "task_creation",
+          "created_at": "2026-05-25T09:43:39"
+        },
+        {
+          "id": "msg_311a9222",
+          "role": "agent",
+          "content": "我已刷新 AI 追问和推荐维度，确认后会进入分析工作台。",
+          "stage": "task_creation",
+          "created_at": "2026-05-25T09:43:39"
+        },
+        {
+          "id": "msg_c7127136",
+          "role": "agent",
+          "content": "任务输入已确认。请在分析工作台选择维度并完善假设池。",
+          "stage": "analysis_design",
+          "created_at": "2026-05-25T09:43:39"
+        }
+      ],
+      "created_at": "2026-05-25T01:22:16",
+      "updated_at": "2026-05-25T09:43:39"
+    }
+  ]
+}
